@@ -104,6 +104,8 @@
        
       </div>
 </div>
+
+     
      
     
   </div>
@@ -163,8 +165,6 @@ export default {
       let x = this.quantidadeId(this.id);
       console.log('valor de x',x);
      this.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${x}.png`;
-     
-     
     },
     quantidadeId (id) {
         if(id < 10){
@@ -176,8 +176,9 @@ export default {
         id = '0'+id;
         return id;
       }
+      return id;
     },
-
+  
  }
   
 }
