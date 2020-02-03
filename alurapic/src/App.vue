@@ -10,13 +10,13 @@
         <div class="col-sm">
             <div id="pokemonImg">
                 <h1 id="pokemonNome">{{pokemon.id}} - {{pokemon.name}}</h1>
-                <img :src="image" alt="">
+                <img id="pokeimg" :src="image" alt="">
             
             </div>
             <div class="cardboard" id="buttonsavancar">
                 <button id="btnVoltar" type="button" class="btn btn-primary" :disabled="id<2" v-on:click="voltarpoke">Voltar</button>
                 <button type="button" class="btn btn-success" 
-                :disabled="id>=9"
+                :disabled="id>=150"
                  v-on:click="avancarpoke">Avançar</button>
 
             </div>
@@ -58,14 +58,18 @@
              <div class="cardboard" id="insidestatus">
                <div class="row">
                   <div class="col" id="namestatus">Height</div>
-                  <div class="col" id="namestatus">Category</div>
+                  <div class="col" id="namestatus">Type</div>
                 </div>
                 <div class="row">
                   <div class="col">
                     <label for="" >{{pokemon.height}}</label>
                   </div>
                   <div class="col">
-                    <label for="">Seed</label>
+                    <ul id="tipopoke">
+                      <li v-for="(tipo, index) in pokemon.types">
+                        {{ tipo.type.name }}
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <div class="row">
@@ -77,7 +81,11 @@
                     <label for="" >{{pokemon.weight}}</label>
                   </div>
                   <div class="col">
-                    <label for="">Seed</label>
+                    <ul id="listahablidade">
+                      <li v-for="(habilidades, index) in pokemon.abilities">
+                        {{ habilidades.ability.name }}
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <div class="row">
@@ -108,11 +116,11 @@ export default {
     return {
       titulo: 'Alura- Curso de VueJs',
       logo:'src/assets/pokemon.png',
-      pokemonName:'Mewtwo',
-      pokemonNumero:'150',
-      pokemondes:`Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. .`,
+      pokemonName:'',
+      pokemonNumero:'',
+      pokemondes:`Bem vindo a Pokedex, meu nome é professor Carvalho`,
       pokemon: [],
-      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png',
+      image: 'src/assets/oak.png',
       id: 0,
     }
   },
@@ -122,7 +130,6 @@ export default {
       .then(res => res.json())
       .then(pokemon => this.pokemon = pokemon, err=> console.log(err));
 
-  console.log(this.pokemon.data);
   }catch(err){
     console.log(err);
   }
@@ -130,45 +137,47 @@ export default {
       console.log(this.pokemon)
     }
   id = this.pokemon.id;
+ 
   },
  methods: {
     avancarpoke (id) {
       this.id++;
-      this.$http.get(`https://pokeapi.co/api/v2/pokemon/${this.id}/`)
-      .then(res => res.json())
-      .then(pokemon => this.pokemon = pokemon, err=> console.log(err));
+      this.carregapoke(this.id);
 
-    console.log('dentro do avancar',this.pokemon);
-     
-     console.log(this.id);
-    this.carregapoke(this.pokemon.data);
     
  },
     voltarpoke(id) {
-      
-       this.id--;
-      this.$http.get(`https://pokeapi.co/api/v2/pokemon/${this.id}/`)
+      this.id--;
+      this.carregapoke(this.id);
+    }    
+  
+    ,
+    carregapoke(id = 1){
+      this.id = id;
+    try { this.$http.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then(res => res.json())
       .then(pokemon => this.pokemon = pokemon, err=> console.log(err));
+      }catch(err){
+        console.log('Erro ao buscar pokemon');
+      }
+      let x = this.quantidadeId(this.id);
+      console.log('valor de x',x);
+     this.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${x}.png`;
+     
+     
+    },
+    quantidadeId (id) {
+        if(id < 10){
+        id = '00'+id;    
+        console.log(id);
+        return id;    
+      }
+      if(id<100){
+        id = '0'+id;
+        return id;
+      }
+    },
 
-    console.log('dentro do avancar',this.pokemon);
-     
-     console.log(this.id);
-    this.carregapoke(this.pokemon.data);
-    }    
-    ,
-    carregapoke(pokemon){
-     pokemon = this.pokemon;
-      if(pokemon!=null){
-       let x = `${this.pokemon.id}`;
-     console.log('usando lenght',x.lenght);
-     this.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${this.id}.png`;
-     console.log(pokemon.url)
-     }else{
-       console.log('deu erro');
-     }
-     
-    }
  }
   
 }
@@ -229,5 +238,9 @@ export default {
   }
   #insidestatus{
     margin: 10px;
+  }
+  #pokeimg{
+    width: 475px;
+    height: 475px;
   }
 </style>
