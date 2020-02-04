@@ -8,11 +8,10 @@
        <img id="logo" :src="logo" alt="">
       <div class="row">
         <div class="col-sm">
-            <div id="pokemonImg">
-                <h1 id="pokemonNome">{{pokemon.id}} - {{pokemon.name}}</h1>
-                <img id="pokeimg" :src="image" alt="">
-            
-            </div>
+            <meu-painel :pokeimg="image"
+                    :pokemon="pokemon"
+            >
+            </meu-painel>  
             <div class="cardboard" id="buttonsavancar">
                 <button id="btnVoltar" type="button" class="btn btn-primary" :disabled="id<2" v-on:click="voltarpoke">Voltar</button>
                 <button type="button" class="btn btn-success" 
@@ -23,7 +22,7 @@
         </div>
         <div class="col-sm">
           <div class="cardboard"> 
-            <div id="pokemondesc">
+            <div class="pokemondesc">
                 <p id="desc">{{pokemondes}}</p>
             </div>
            <div>
@@ -112,7 +111,13 @@
 </template>
 
 <script>
+import Painel from './components/shared/painel/Painel.vue';
+
 export default {
+  components: {
+    'meu-painel' : Painel
+  },
+
   name: 'app',
   data () {
     return {
@@ -127,19 +132,6 @@ export default {
     }
   },
   created () {
-    try
-   {this.$http.get('https://pokeapi.co/api/v2/pokemon/1/')
-      .then(res => res.json())
-      .then(pokemon => this.pokemon = pokemon, err=> console.log(err));
-
-  }catch(err){
-    console.log(err);
-  }
-    if(this.pokemon.data){
-      console.log(this.pokemon)
-    }
-  id = this.pokemon.id;
- 
   },
  methods: {
     avancarpoke (id) {
@@ -163,20 +155,19 @@ export default {
         console.log('Erro ao buscar pokemon');
       }
       let x = this.quantidadeId(this.id);
-      console.log('valor de x',x);
-     this.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${x}.png`;
+      this.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${x}.png`;
     },
     quantidadeId (id) {
         if(id < 10){
-        id = '00'+id;    
-        console.log(id);
-        return id;    
+          id = '00'+id;    
+          console.log(id);
+          return id;    
       }
-      if(id<100){
-        id = '0'+id;
+        if(id<100){
+          id = '0'+id;
+          return id;
+        }
         return id;
-      }
-      return id;
     },
   
  }
@@ -196,17 +187,11 @@ export default {
   .label{
     font-size: 15p;
     font-family: sans-serif;
-  }  
-  #pokemonImg{
-    background-color: white;
-    margin : 30px;
-    border-radius: 15px;
-    border-block-color: black;
-  }
+  } 
   #pokemonNome{
     margin-left: 100px;
   }
-  #pokemondesc{
+  .pokemondesc{
     background-color: green;
     margin: 30px;
     border-radius: 10px;
@@ -240,7 +225,7 @@ export default {
   #insidestatus{
     margin: 10px;
   }
-  #pokeimg{
+  .pokeimg{
     width: 475px;
     height: 475px;
   }
