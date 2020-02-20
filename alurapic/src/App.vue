@@ -1,112 +1,7 @@
 <template>
   <div class="cardboard">
-    <h1>{{titulo}}</h1> 
-    
-   
-   
-     <div class="container">
-       <img id="logo" :src="logo" alt="">
-      <div class="row">
-        <div class="col-sm">
-            <meu-painel :pokeimg="image"
-                    :pokemon="pokemon"
-            >
-            </meu-painel>  
-            <div class="cardboard" id="buttonsavancar">
-                <button id="btnVoltar" type="button" class="btn btn-primary" :disabled="id<2" v-on:click="voltarpoke">Voltar</button>
-                <button type="button" class="btn btn-success" 
-                :disabled="id>=150"
-                 v-on:click="avancarpoke">Avançar</button>
+    <h1>{{titulo}}</h1>
 
-            </div>
-        </div>
-        <div class="col-sm">
-          <div class="cardboard"> 
-            <div class="pokemondesc">
-                <p id="desc">{{pokemondes}}</p>
-            </div>
-           <div>
-              <div class="cardboard" id="bluestuff">
-                <div class="row"> <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                </div>
-                <div class="row"> <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                </div>
-               
-                
-              </div>  
-          </div>
-           <div id="pokemonstatus">
-             <div class="cardboard" id="insidestatus">
-               <div class="row">
-                  <div class="col" id="namestatus">Height</div>
-                  <div class="col" id="namestatus">Type</div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <label for="" >{{pokemon.height}}</label>
-                  </div>
-                  <div class="col">
-                    <ul id="tipopoke">
-                      <li v-for="(tipo, index) in pokemon.types">
-                        {{ tipo.type.name }}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col" id="namestatus">Weight</div>
-                  <div class="col" id="namestatus">Abilities</div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <label for="" >{{pokemon.weight}}</label>
-                  </div>
-                  <div class="col">
-                    <ul id="listahablidade">
-                      <li v-for="(habilidades, index) in pokemon.abilities">
-                        {{ habilidades.ability.name }}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col" id="namestatus">Gender</div>
-                </div>
-                <div class="row">
-                 <div class="col">
-                   Male and Female
-                 </div>
-                </div>
-            </div>
-            </div>
-          </div>
-        </div>
-        
-       
-      </div>
-</div>
-
-     
-     
-    
   </div>
 </template>
 
@@ -138,13 +33,13 @@ export default {
       this.id++;
       this.carregapoke(this.id);
 
-    
+
  },
     voltarpoke(id) {
       this.id--;
       this.carregapoke(this.id);
-    }    
-  
+    }
+
     ,
     carregapoke(id = 1){
       this.id = id;
@@ -159,9 +54,9 @@ export default {
     },
     quantidadeId (id) {
         if(id < 10){
-          id = '00'+id;    
+          id = '00'+id;
           console.log(id);
-          return id;    
+          return id;
       }
         if(id<100){
           id = '0'+id;
@@ -169,11 +64,11 @@ export default {
         }
         return id;
     },
-  
+
  }
-  
+
 }
-</script> 
+</script>
 
 <style>
   .container{
@@ -187,7 +82,7 @@ export default {
   .label{
     font-size: 15p;
     font-family: sans-serif;
-  } 
+  }
   #pokemonNome{
     margin-left: 100px;
   }
