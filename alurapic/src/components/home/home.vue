@@ -1,9 +1,5 @@
 <template>
   <div class="cardboard">
-    <h1>{{titulo}}</h1>
-
-
-
      <div class="container">
        <img id="logo" :src="logo" alt="">
       <div class="row">
@@ -98,13 +94,12 @@
             </div>
             </div>
           </div>
-          <evolucoes/>
+          <evolucoes :species="this.id"/>
         </div>
 
 
       </div>
 </div>
-
 
 
 
@@ -123,7 +118,7 @@ export default {
   name: 'app',
   data () {
     return {
-      titulo: 'Alura- Curso de VueJs',
+
       logo:'src/assets/pokemon.png',
       pokemonName:'',
       pokemonNumero:'',
