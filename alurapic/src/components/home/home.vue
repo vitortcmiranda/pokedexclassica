@@ -1,5 +1,9 @@
 <template>
   <div class="cardboard">
+    <h1>{{titulo}}</h1>
+
+
+
      <div class="container">
        <img id="logo" :src="logo" alt="">
       <div class="row">
@@ -113,12 +117,13 @@ export default {
   components: {
     'meu-painel' : Painel,
     'evolucoes' : evolucoes
+
   },
 
   name: 'app',
   data () {
     return {
-
+      titulo: 'Alura- Curso de VueJs',
       logo:'src/assets/pokemon.png',
       pokemonName:'',
       pokemonNumero:'',
@@ -174,7 +179,7 @@ export default {
 
 <style>
 
-  .container{
+  .container {
     background-color: brown;
     border-radius: 15px;
   }

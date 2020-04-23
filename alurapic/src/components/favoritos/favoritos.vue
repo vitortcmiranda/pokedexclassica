@@ -1,16 +1,26 @@
 <template>
-    <h2 class="centralizado">Favoritos</h2>
+  <h1>Tela de Favoritos</h1>
 </template>
 
-vue:<script>
+<script>
 export default {
+  data() {
+    return {
 
+    },
+  },
+  created() {
+
+  },
+  mounted() {
+    console.log('teste');
+  },
+  computed: {
+
+  },
 }
 </script>
 
 <style lang="stylus" scoped>
-  .centralizado{
-    text-align :  center;
-  }
 
 </style>

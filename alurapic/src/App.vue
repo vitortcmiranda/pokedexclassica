@@ -19,5 +19,4 @@ export default {
     background-color: brown;
     border-radius: 15px;
   }
-
 </style>
