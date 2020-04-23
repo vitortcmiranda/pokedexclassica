@@ -98,12 +98,13 @@
             </div>
             </div>
           </div>
-          <evolucoes :species="this.id"/>
+          <evolucoes/>
         </div>
 
 
       </div>
 </div>
+
 
 
 

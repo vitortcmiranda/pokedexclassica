@@ -4,48 +4,24 @@
   <div class="row">
           <!-- V-for para cada item -->
 
-            <div class="pokec" v-for="item in items">
-              <img class="pokeimg" :src="url()" alt="">
+            <div class="pokec">
+              <img class="pokeimg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="">
+             </div>
+
+             <div class="pokec">
+              <img class="pokeimg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" alt="">
+             </div>
+
+             <div class="pokec">
+              <img class="pokeimg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" alt="">
              </div>
           </div>
 </template>
 
 <script>
 export default {
- data () {
-    return {
-     items:[1,2,3],
-     pokemon:[]
-    }
-  },
-  props:[
-    'species',
+  props:{
 
-  ],
-  methods:{
-    teste () {console.log('teste')},
-    url(){
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.species}.png`
-    },
-    evolution(id = 1){
-      this.id = id;
-    try { this.$http.get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
-      .then(res => res.json())
-      .then(pokemon => this.pokemon = pokemon, err=> console.log(err));
-      }catch(err){
-        console.log('Erro ao buscar pokemon');
-      }
-
-    }
-  },
-   created () {
-     console.log('specie:' + this.pokemon)
-  },
-  // watch () {
-  //   evolution(1)
-  // },
-  updated ( ) {
-    this.evolution();
   }
 }
 </script>
