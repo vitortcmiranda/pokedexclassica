@@ -1,11 +1,11 @@
 
-import favoritos from '.component/favoritos/favoritos.vue';
-import home from '.component/home/home.vue'
+import home from './components/home/home.vue'
+import favoritos from './components/favoritos/favoritos.vue'
 export const routes = [
   {
     path:'/', component : home
   },
   {
-    path: '/favoritos/', component : Favoritos
-  },
+    path:'/favoritos', component : favoritos
+  }
 ];
