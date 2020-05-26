@@ -98,7 +98,6 @@
             </div>
             </div>
           </div>
-          <evolucoes/>
         </div>
 
 
@@ -113,11 +112,9 @@
 
 <script>
 import Painel from '../shared/painel/Painel.vue';
-import evolucoes from '../evolucoes/evolucoes.vue';
 export default {
   components: {
     'meu-painel' : Painel,
-    'evolucoes' : evolucoes
 
   },
 
