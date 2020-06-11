@@ -21,9 +21,16 @@
 <script>
 export default {
   props:{
+    pokemon:{}
+  },
+  created() {
 
-  }
+  },
+  updated() {
+    console.log(this.pokemon)
+  },
 }
+
 </script>
 
 <style scoped>

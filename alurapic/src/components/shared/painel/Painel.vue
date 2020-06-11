@@ -23,11 +23,12 @@ export default {
     border: solid 2px grey;
     display: inline-block;
     margin: 5px;
-    box-shadow: 5px 5px 10px grey;    
+    box-shadow: 5px 5px 10px grey;
     vertical-align: top;
     text-align: center;
     border-radius: 15px;
     background-color: white;
+    margin: 20px 5px 55px 5px;
   }
 
   .painel .painel-titulo {
@@ -39,4 +40,9 @@ export default {
     text-transform: uppercase;
     border-radius: 15px;
   }
+  .pokeimg{
+    width:50%;
+    height: 50%;
+  }
+  .painel-corpo{}
 </style>

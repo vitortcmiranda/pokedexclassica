@@ -1,127 +1,73 @@
 <template>
   <div class="cardboard">
-    <h1>{{titulo}}</h1>
-
-
 
      <div class="container">
-       <img id="logo" :src="logo" alt="">
+
+           <div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col" >
+      <img class="logo" :src="logo" alt="">
+    </div>
+    <div class="col">
+    </div>
+    </div>
+  <div class="row">
+    <div class="col" style="background-color:grey">
+      <meu-painel :pokeimg="image"
+                    :pokemon="pokemon"/>
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col">
       <div class="row">
-        <div class="col-sm">
-            <meu-painel :pokeimg="image"
-                    :pokemon="pokemon"
-            >
-            </meu-painel>
-            <div class="cardboard" id="buttonsavancar">
-                <button id="btnVoltar" type="button" class="btn btn-primary" :disabled="id<2" v-on:click="voltarpoke">Voltar</button>
+        <status :pokemon="pokemon"></status>
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+        <evolucoes></evolucoes>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div clas="btnpoke">
+         <button id="btnVoltar" type="button" class="btn btn-primary" :disabled="id<2" v-on:click="voltarpoke">Voltar</button>
                 <button type="button" class="btn btn-success"
                 :disabled="id>=150"
                  v-on:click="avancarpoke">Avançar</button>
-
-            </div>
-        </div>
-        <div class="col-sm">
-          <div class="cardboard">
-            <div class="pokemondesc">
-                <p id="desc">{{pokemondes}}</p>
-            </div>
-           <div>
-              <div class="cardboard" id="bluestuff">
-                <div class="row"> <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                </div>
-                <div class="row"> <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                 <div id="span" class="border border-primary"></div>
-                <div id="span" class="border border-primary"></div>
-                </div>
-
-
-              </div>
-          </div>
-           <div id="pokemonstatus">
-             <div class="cardboard" id="insidestatus">
-               <div class="row">
-                  <div class="col" id="namestatus">Height</div>
-                  <div class="col" id="namestatus">Type</div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <label for="" >{{pokemon.height}}</label>
-                  </div>
-                  <div class="col">
-                    <ul id="tipopoke">
-                      <li v-for="(tipo, index) in pokemon.types">
-                        {{ tipo.type.name }}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col" id="namestatus">Weight</div>
-                  <div class="col" id="namestatus">Abilities</div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <label for="" >{{pokemon.weight}}</label>
-                  </div>
-                  <div class="col">
-                    <ul id="listahablidade">
-                      <li v-for="(habilidades, index) in pokemon.abilities">
-                        {{ habilidades.ability.name }}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col" id="namestatus">Gender</div>
-                </div>
-                <div class="row">
-                 <div class="col">
-                   Male and Female
-                 </div>
-                </div>
-            </div>
-            </div>
-          </div>
-        </div>
-
+      </div>
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>
 
       </div>
 </div>
-
-
-
-
-  </div>
 </template>
 
 <script>
-import Painel from '../shared/painel/Painel.vue';
+import Painel from '../shared/painel/Painel.vue'
+import evolucoes from '../evolucoes/evolucoes.vue'
+import boxesvue from '../boxes.vue'
+import status from '../status/status'
 export default {
   components: {
     'meu-painel' : Painel,
+    'evolucoes' : evolucoes,
+    'boxesvue': boxesvue,
+    'status': status
 
   },
 
-  name: 'app',
+  name: 'pokedex',
   data () {
     return {
-      titulo: 'Alura- Curso de VueJs',
       logo:'src/assets/pokemon.png',
       pokemonName:'',
       pokemonNumero:'',
@@ -160,7 +106,6 @@ export default {
     quantidadeId (id) {
         if(id < 10){
           id = '00'+id;
-          console.log(id);
           return id;
       }
         if(id<100){
@@ -176,58 +121,25 @@ export default {
 </script>
 
 <style>
-
+  .col{
+    text-align: center;
+  }
   .container {
     background-color: brown;
     border-radius: 15px;
   }
-  #logo{
-    width: 400px;
-    margin-left: 30%;
+  .h1{
+    text-align: center;
   }
-  .label{
-    font-size: 15p;
-    font-family: sans-serif;
+  .teste{
+    text-align: center;
   }
-  #pokemonNome{
-    margin-left: 100px;
+  .logo{
+    width:90%;
+    height:60%;
   }
-  .pokemondesc{
-    background-color: green;
-    margin: 30px;
-    border-radius: 10px;
+  .btnpoke{
+    text-align: center;
   }
-  #desc{
-    margin: 10px;
-    font-family: sans-serif;
-    font-size: 33px;
-  }
-  #span{
-    width: 50px;
-    height: 50px;
-    background-color: aqua;
-    border-radius: 5px;
-  }
-  #bluestuff{
-    margin: 30px;
-  }
-  #buttonsavancar{
-    margin-left: 180px;
-    margin-bottom: 50px;
-  }
-  #pokemonstatus{
-    background-color: #30A7D7;
-    margin: 30px;
-    border-radius: 10px;
-  }
-  #namestatus{
-    color: white;
-  }
-  #insidestatus{
-    margin: 10px;
-  }
-  .pokeimg{
-    width: 475px;
-    height: 475px;
-  }
+
 </style>
